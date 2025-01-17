@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram To Fediverse Converter</title>
-    <link rel="icon" type="image/png" href="/InstaFediverse.png" />
+    <title>Twitter To Fediverse Converter</title>
+    <link rel="icon" type="image/png" href="/xcomFediverse.png" />
     <style>
         /* Dark Mode */
         body {
@@ -96,13 +96,13 @@
 <body>
 
     <div class="container">
-        <h1>INSTAGRAM to FEDIVERSE</h1>
+        <h1>TWITTER to FEDIVERSE</h1>
         
-        <label for="username"><b>Instagram Username</b></label>
-        <input type="text" id="username" placeholder="Enter Instagram username or full URL">
+        <label for="username"><b>Twitter Username</b></label>
+        <input type="text" id="username" placeholder="Enter Twitter username or full URL">
         
-        <label for="postUrl"><b>Instagram Post URL</b></label>
-        <input type="text" id="postUrl" placeholder="Enter Instagram post URL">
+        <label for="postUrl"><b>Twitter Post URL</b></label>
+        <input type="text" id="postUrl" placeholder="Enter Tiwtter post URL">
         
         <button onclick="generateUrl()">Generate URL</button>
 
@@ -119,18 +119,18 @@
             var username = document.getElementById("username").value;
             var postUrl = document.getElementById("postUrl").value;
 
-            // Check if the username is a full Instagram URL and extract just the username
-            var usernameMatch = username.match(/https:\/\/www\.instagram\.com\/([^\/]+)/);
+            // Check if the username is a full Twitter URL and extract just the username
+            var usernameMatch = username.match(/https:\/\/x\.com\/([^\/]+)/);
             if (usernameMatch) {
                 username = usernameMatch[1]; // Extract the username part from the URL
             }
 
-            // Extract the Instagram post or reel code using regex
-            var postCode = postUrl.match(/https:\/\/www\.instagram\.com\/(p|reel)\/([^\/?]+)/);
+            // Extract the Twitter post code using regex
+            var postCode = postUrl.match(/https:\/\/x\.com\/([^\/]+)\/status\/([^\/?]+)/);
 
             // If post code is found, generate the URL
             if (postCode && postCode[2]) {
-                var generatedUrl = "https://kilogram.makeup/users/" + username.toLowerCase() + "/statuses/" + postCode[2];
+                var generatedUrl = "https://bird.makeup/users/" + username.toLowerCase() + "/statuses/" + postCode[2];
                 
                 // Create a clickable link
                 var link = document.createElement("a");
@@ -155,10 +155,10 @@
                 generatedUrlElement.innerHTML = '';  // Clear any existing content
                 generatedUrlElement.appendChild(link);
             } else {
-                document.getElementById("generatedUrl").textContent = "Invalid Instagram post or reel URL.";
+                document.getElementById("generatedUrl").textContent = "Invalid Twitter post URL.";
             }
         }
     </script>
-    <p>Created by <a class="footer-url" href="https://bikersgo.social/@Sam" target="_blank">Sam@bikersgo.social</a> | Powered by <a class="footer-url" href="https://kilogram.makeup" target="_blank">kilogram.makeup</a></p>
+    <p>Created by <a class="footer-url" href="https://bikersgo.social/@Sam" target="_blank">Sam@bikersgo.social</a> | Powered by <a class="footer-url" href="https://bird.makeup" target="_blank">bird.makeup</a></p>
 </body>
 </html>
