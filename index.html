@@ -99,7 +99,7 @@
         <h1>INSTAGRAM to FEDIVERSE</h1>
         
         <label for="username"><b>Instagram Username</b></label>
-        <input type="text" id="username" placeholder="Enter Instagram username">
+        <input type="text" id="username" placeholder="Enter Instagram username or full URL">
         
         <label for="postUrl"><b>Instagram Post URL</b></label>
         <input type="text" id="postUrl" placeholder="Enter Instagram post URL">
@@ -118,13 +118,19 @@
             // Get the values from the input fields
             var username = document.getElementById("username").value;
             var postUrl = document.getElementById("postUrl").value;
-            
-            // Extract the Instagram post code using regex
-            var postCode = postUrl.match(/https:\/\/www\.instagram\.com\/p\/([^\/?]+)/);
-            
+
+            // Check if the username is a full Instagram URL and extract just the username
+            var usernameMatch = username.match(/https:\/\/www\.instagram\.com\/([^\/]+)/);
+            if (usernameMatch) {
+                username = usernameMatch[1]; // Extract the username part from the URL
+            }
+
+            // Extract the Instagram post or reel code using regex
+            var postCode = postUrl.match(/https:\/\/www\.instagram\.com\/(p|reel)\/([^\/?]+)/);
+
             // If post code is found, generate the URL
-            if (postCode && postCode[1]) {
-                var generatedUrl = "https://kilogram.makeup/users/" + username.toLowerCase() + "/statuses/" + postCode[1];
+            if (postCode && postCode[2]) {
+                var generatedUrl = "https://kilogram.makeup/users/" + username.toLowerCase() + "/statuses/" + postCode[2];
                 
                 // Create a clickable link
                 var link = document.createElement("a");
@@ -149,7 +155,7 @@
                 generatedUrlElement.innerHTML = '';  // Clear any existing content
                 generatedUrlElement.appendChild(link);
             } else {
-                document.getElementById("generatedUrl").textContent = "Invalid Instagram post URL.";
+                document.getElementById("generatedUrl").textContent = "Invalid Instagram post or reel URL.";
             }
         }
     </script>
