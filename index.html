@@ -98,11 +98,8 @@
     <div class="container">
         <h1>TWITTER to FEDIVERSE</h1>
         
-        <label for="username"><b>Twitter Username</b></label>
-        <input type="text" id="username" placeholder="Enter Twitter username or full URL">
-        
         <label for="postUrl"><b>Twitter Post URL</b></label>
-        <input type="text" id="postUrl" placeholder="Enter Tiwtter post URL">
+        <input type="text" id="postUrl" placeholder="Enter Twitter post URL">
         
         <button onclick="generateUrl()">Generate URL</button>
 
@@ -115,22 +112,19 @@
     <script>
         // Function to generate the URL and display it
         function generateUrl() {
-            // Get the values from the input fields
-            var username = document.getElementById("username").value;
+            // Get the value from the post URL input
             var postUrl = document.getElementById("postUrl").value;
 
-            // Check if the username is a full Twitter URL and extract just the username
-            var usernameMatch = username.match(/https:\/\/x\.com\/([^\/]+)/);
-            if (usernameMatch) {
-                username = usernameMatch[1]; // Extract the username part from the URL
-            }
-
-            // Extract the Twitter post code using regex
-            var postCode = postUrl.match(/https:\/\/x\.com\/([^\/]+)\/status\/([^\/?]+)/);
+            // Extract the Twitter username and post code using regex
+            var postCodeMatch = postUrl.match(/https:\/\/x\.com\/([^\/]+)\/status\/([^\/?]+)/);
 
             // If post code is found, generate the URL
-            if (postCode && postCode[2]) {
-                var generatedUrl = "https://bird.makeup/users/" + username.toLowerCase() + "/statuses/" + postCode[2];
+            if (postCodeMatch && postCodeMatch[1] && postCodeMatch[2]) {
+                var username = postCodeMatch[1];
+                var postCode = postCodeMatch[2];
+                
+                // Construct the Fediverse URL
+                var generatedUrl = "https://bird.makeup/users/" + username.toLowerCase() + "/statuses/" + postCode;
                 
                 // Create a clickable link
                 var link = document.createElement("a");
