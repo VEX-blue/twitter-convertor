@@ -1,0 +1,85 @@
+/* Dark Mode */
+body {
+    background-color: #272727;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centering the main content vertically and horizontally */
+    height: 100vh;
+    text-align: center;
+    box-sizing: border-box;
+    flex-direction: column; /* Stack the containers vertically */
+}
+
+/* Main container */
+.container {
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    margin: 1rem;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    color: #bbb;
+}
+
+button {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+a {
+    font-weight: 700;
+    color: #1fcd3c;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.footer-url {
+    font-size: 1rem;
+    text-decoration: inherit;
+}
+
+/* Media Query for mobile */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Stack containers vertically */
+    }
+
+    .container {
+        width: 100%; /* Take full width of the viewport */
+        max-width: none; /* Remove max width to allow full screen width */
+    }
+
+    iframe {
+        width: 100%; /* Make the iframe take full width */
+        height: 200px; /* Adjust iframe height for smaller screens */
+    }
+}
